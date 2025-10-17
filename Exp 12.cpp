@@ -5,10 +5,10 @@ class online_shopping {
 protected:
     string item_name;
     int quantity;
-    double unit_price;
+    float unit_price;
 
 public:
-    void getShoppingDetails() {
+    void input() {
         cout << "Enter item name: ";
         cin >> item_name;
         cout << "Enter quantity: ";
@@ -20,10 +20,10 @@ public:
 
 class Shipping_details {
 protected:
-    double shipping_charge;
+    float shipping_charge;
 
 public:
-    void getShippingCharge() {
+    void input_charge() {
         cout << "Enter shipping charge: ";
         cin >> shipping_charge;
     }
@@ -31,11 +31,11 @@ public:
 
 class Bill : public online_shopping, public Shipping_details {
 public:
-    void displayBill() {
-        double total_price = quantity * unit_price;
-        double total_amount = total_price + shipping_charge;
-
-        cout << " Bill Details ";
+    void display() {
+        float total_price = quantity * unit_price;
+        float total_amount = total_price + shipping_charge;
+        cout<<endl;
+        cout << "Bill Details "<<endl;
         cout << "Item Name: " << item_name << endl;
         cout << "Quantity: " << quantity << endl;
         cout << "Unit Price: " << unit_price << endl;
@@ -48,9 +48,9 @@ public:
 int main() {
     Bill b;
 
-    b.getShoppingDetails();
-    b.getShippingCharge();
-    b.displayBill();
+    b.input();
+    b.input_charge();
+    b.display();
 
     return 0;
 }
