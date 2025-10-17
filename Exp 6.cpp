@@ -1,43 +1,43 @@
 #include <iostream>
 using namespace std;
 
-class TelephoneBill {
+class PhoneBill {
 private:
-    string Name;
-    string Address;
-    string TelNo;
-    int noOfCalls;
+    string customerName;
+    string customerAddress;
+    string phoneNumber;
+    int callCount;
 
 public:
-    void inputDetails() {
-        cout << "Enter Name: ";
-        cin >> Name;
+    void getDetails() {
+        cout << "Enter Customer Name: ";
+        cin >> customerName;
         cout << "Enter Address: ";
-        cin >> Address;
-        cout << "Enter Telephone Number: ";
-        cin >> TelNo;
-        cout << "Enter Number of Calls: ";
-        cin >> noOfCalls;
+        cin >> customerAddress;
+        cout << "Enter Phone Number: ";
+        cin >> phoneNumber;
+        cout << "Enter Number of Calls Made: ";
+        cin >> callCount;
     }
 
-    friend void calculateBill(TelephoneBill t);
+    friend void generateBill(PhoneBill p);
 };
 
-void calculateBill(TelephoneBill t) {
-    int totalAmount = t.noOfCalls * 2;  // Rs. 2 per call
+void generateBill(PhoneBill p) {
+    int total = p.callCount * 2;
 
-    cout << "\n--- Telephone Bill ---\n";
-    cout << "Name: " << t.Name << endl;
-    cout << "Address: " << t.Address << endl;
-    cout << "Telephone No.: " << t.TelNo << endl;
-    cout << "Number of Calls: " << t.noOfCalls << endl;
-    cout << "Total Amount to be Paid: Rs. " << totalAmount << endl;
+    cout << " Phone Bill "<<endl;
+    cout << "Name: " << p.customerName << endl;
+    cout << "Address: " << p.customerAddress << endl;
+    cout << "Phone Number: " << p.phoneNumber << endl;
+    cout << "Calls Made: " << p.callCount << endl;
+    cout << "Total Amount: Rs. " << total << endl;
 }
 
 int main() {
-    TelephoneBill customer;
+    PhoneBill user;
 
-    customer.inputDetails();   
-    calculateBill(customer);   
+    user.getDetails();     
+    generateBill(user);     
 
 }
