@@ -8,8 +8,10 @@ private:
 
 public:
     Rectangle() {
-        length = 0;
-        width = 0;
+        cout << "Enter length: ";
+        cin >> length;
+        cout << "Enter width: ";
+        cin >> width;
         cout << "Default constructor called.\n";
     }
 
@@ -20,7 +22,7 @@ public:
     }
 
     void display() {
-        cout << "Length: " << length << ", Width: " << width << endl;
+        cout << "Length = " << length << ", Width = " << width << endl;
     }
 
     ~Rectangle() {
@@ -29,12 +31,20 @@ public:
 };
 
 int main() {
-    Rectangle r1;
-    cout << "Rectangle 1 (default constructor): ";
+    cout << "  Rectangle 1 \n";
+    Rectangle r1;  
+    cout << "Rectangle 1: ";
     r1.display();
 
-    Rectangle r2(10.5, 5.2);
-    cout << "Rectangle 2 (parameterized constructor): ";
+    cout << "\n  Rectangle 2 \n";
+    float l, w;
+    cout << "Enter length for Rectangle 2: ";
+    cin >> l;
+    cout << "Enter width for Rectangle 2: ";
+    cin >> w;
+    Rectangle r2(l, w); 
+    cout << "Rectangle 2: ";
     r2.display();
 
+    cout << "\nProgram ends, destructors will be called.\n";
 }
