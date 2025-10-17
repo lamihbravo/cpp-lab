@@ -2,58 +2,64 @@
 using namespace std;
 
 class Matrix {
-    int mat[10][10];
-    int rows, cols;
+    int arr[10][10];
+    int r, c;
 
 public:
-    void input() {
+    void getData() {
         cout << "Enter number of rows: ";
-        cin >> rows;
+        cin >> r;
         cout << "Enter number of columns: ";
-        cin >> cols;
+        cin >> c;
 
-        cout << "Enter matrix elements:\n";
-        for (int i = 0; i < rows; i++)
-            for (int j = 0; j < cols; j++)
-                cin >> mat[i][j];
-    }
-
-    void display() {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++)
-                cout << mat[i][j] << " ";
-            cout << endl;
+        cout << "Enter elements:\n";
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                cin >> arr[i][j];
+            }
         }
     }
 
-    Matrix operator+(const Matrix& m) {
-        Matrix temp;
-        if (rows != m.rows || cols != m.cols) {
-            cout << "Matrix dimensions do not match!\n";
-            return temp;
+    Matrix add(Matrix m) {
+        Matrix result;
+        if (r != m.r || c != m.c) {
+            cout << "Addition not possible. Sizes are different.\n";
+            result.r = result.c = 0;
+            return result;
         }
 
-        temp.rows = rows;
-        temp.cols = cols;
+        result.r = r;
+        result.c = c;
 
-        for (int i = 0; i < rows; i++)
-            for (int j = 0; j < cols; j++)
-                temp.mat[i][j] = mat[i][j] + m.mat[i][j];
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                result.arr[i][j] = arr[i][j] + m.arr[i][j];
+            }
+        }
+        return result;
+    }
 
-        return temp;
+    void show() {
+        cout << " SUm of two metrixMatrix:\n";
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                cout << arr[i][j] << " ";
+            }
+            cout << "\n";
+        }
     }
 };
 
 int main() {
-    Matrix m1, m2, m3;
+    Matrix A, B, Sum;
 
-    m1.input();
-    m2.input();
+    cout << "First Matrix\n";
+    A.getData();
 
-    m3 = m1 + m2;
+    cout << " Second Matrix\n";
+    B.getData();
 
-    cout << "Sum of matrices:\n";
-    m3.display();
+    Sum = A.add(B);
+    Sum.show();
 
-    return 0;
 }
