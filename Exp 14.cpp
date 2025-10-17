@@ -3,36 +3,43 @@ using namespace std;
 
 class Student {
 protected:
-    string Name;
-    int Rollno;
-    string Course;
+    string name,course;
+    int rollno;
+    
 
 public:
-    void setStudentDetails(string name, int roll, string course) {
-        Name = name;
-        Rollno = roll;
-        Course = course;
+    void input_details() {
+       
+        cout<<"Enter student name:"<<endl;
+        cin>>name;
+        cout<<"Enter student Roll Number:"<<endl;
+        cin>>rollno;
+        cout<<"Enter student Cource:"<<endl;
+        cin>>course;
     }
 
-    void displayStudentDetails() {
-        cout << "Name: " << Name << endl;
-        cout << "Roll No: " << Rollno << endl;
-        cout << "Course: " << Course << endl;
+    void Display() {
+        cout << "Name: " << name << endl;
+        cout << "Roll No: " << rollno << endl;
+        cout << "Course: " << course << endl;
     }
 };
 
 class Test : virtual public Student {
 protected:
     int marks[3];
-
+    
 public:
-    void setMarks(int m1, int m2, int m3) {
-        marks[0] = m1;
-        marks[1] = m2;
-        marks[2] = m3;
+    void input_marks() {
+        cout<<"Enter mark1:"<<endl;
+        cin>>marks[0];
+        cout<<"Enter student mark2:"<<endl;
+        cin>>marks[1];
+        cout<<"Enter mark3:"<<endl;
+        cin>>marks[2];
     }
 
-    void displayMarks() {
+    void display_marks() {
         cout << "Marks in 3 subjects: ";
         for (int i = 0; i < 3; i++) {
             cout << marks[i] << " ";
@@ -40,32 +47,32 @@ public:
         cout << endl;
     }
 
-    int totalMarks() {
+    int total_marks() {
         return marks[0] + marks[1] + marks[2];
     }
 };
 
-class GraceMarks : virtual public Student {
+class GraceMarks :virtual public Student {
 protected:
-    int BonusMark;
+    int B;
 
 public:
-    void setBonusMark(int bonus) {
-        BonusMark = bonus;
+    void set_bonus_mark(int bonus) {
+        B = bonus;
     }
 
-    int getBonusMark() {
-        return BonusMark;
+    int get_bonus_mark() {
+        return B;
     }
 };
 
 class Result : public Test, public GraceMarks {
 public:
-    void displayResult() {
-        displayStudentDetails();
-        displayMarks();
-        cout << "Bonus Mark: " << getBonusMark() << endl;
-        int total = totalMarks() + getBonusMark();
+    void display_result() {
+        input_details();
+        display_marks();
+        cout << "Bonus Mark: " << get_bonus_mark() << endl;
+        int total = total_marks() + get_bonus_mark();
         cout << "Total Marks : " << total << endl;
     }
 };
@@ -73,12 +80,12 @@ public:
 int main() {
     Result r;
 
-    r.setStudentDetails("LAmi", 11, "Computer Science");
+    r.input_details();
 
-    r.setMarks(85, 90, 78);
+    r.input_marks();
 
-    r.setBonusMark(5);
+    r.set_bonus_mark(5);
 
-    r.displayResult();
+    r.display_result();
 
 }
