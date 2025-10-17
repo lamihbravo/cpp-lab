@@ -2,40 +2,42 @@
 using namespace std;
 
 inline float areaCircle(float radius) {
-    return 3.14159 * radius * radius;
+    return 3.14159f * radius * radius;
 }
 
 inline float areaSquare(float side) {
     return side * side;
 }
 
-
 inline float areaRectangle(float length, float width) {
     return length * width;
 }
 
 inline float areaTriangle(float base, float height) {
-    return 0.5 * base * height;
+    return 0.5f * base * height;
 }
 
 int main() {
     float r, s, l, w, b, h;
 
-    cout << "Enter radius of circle: ";
+    cout << " Circle \n";
+    cout << "Enter radius: ";
     cin >> r;
-    cout << "Area of circle: " << areaCircle(r) << endl;
+    cout << "Circle Area = " << areaCircle(r) << " square units\n\n";
 
-    cout << "Enter side of square: ";
+    cout << " Square \n";
+    cout << "Enter side length: ";
     cin >> s;
-    cout << "Area of square: " << areaSquare(s) << endl;
+    cout << "Square Area = " << areaSquare(s) << " square units\n\n";
 
-    cout << "Enter length and width of rectangle: ";
+    cout << " Rectangle \n";
+    cout << "Enter length and width: ";
     cin >> l >> w;
-    cout << "Area of rectangle: " << areaRectangle(l, w) << endl;
+    cout << "Rectangle Area = " << areaRectangle(l, w) << " square units\n\n";
 
-    cout << "Enter base and height of triangle: ";
+    cout << " Triangle \n";
+    cout << "Enter base and height: ";
     cin >> b >> h;
-    cout << "Area of triangle: " << areaTriangle(b, h) << endl;
+    cout << "Triangle Area = " << areaTriangle(b, h) << " square units\n";
 
-    return 0;
 }
