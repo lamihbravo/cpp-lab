@@ -4,20 +4,27 @@ using namespace std;
 class BankAccount {
 protected:
     string account_number;
-    double balance;
+    float balance;
 
 public:
-    BankAccount(string acc_num, double bal) {
-        account_number = acc_num;
-        balance = bal;
+    BankAccount() {
+        account_number = "";
+        balance = 0.0;
     }
 
-    void deposit(double amount) {
+    void inputAccountDetails() {
+        cout << "Enter the Account Number: ";
+        cin >> account_number;
+        cout << "Enter Balance: ";
+        cin >> balance;
+    }
+
+    void deposit(float amount) {
         balance += amount;
         cout << "Deposited: " << amount << endl;
     }
 
-    void withdraw(double amount) {
+    void withdraw(float amount) {
         if (amount <= balance) {
             balance -= amount;
             cout << "Withdrawn: " << amount << endl;
@@ -34,30 +41,42 @@ public:
 
 class SavingsAccount : public BankAccount {
 private:
-    double rate_of_interest;
+    float rate_of_interest;
 
 public:
-    SavingsAccount(string acc_num, double bal, double rate)
-        : BankAccount(acc_num, bal) {
-        rate_of_interest = rate;
+    SavingsAccount() : BankAccount() {
+        rate_of_interest = 0.0;
+    }
+
+    void inputSavingsDetails() {
+        inputAccountDetails();
+        cout << "Enter rate of interest: ";
+        cin >> rate_of_interest;
     }
 
     void calculateInterest() {
-        double interest = balance * rate_of_interest / 100;
+        float interest = balance * rate_of_interest / 100;
         cout << "Interest: " << interest << endl;
     }
 };
 
 class CurrentAccount : public BankAccount {
 private:
-    double minimum_balance;
-    double service_charge;
+    float minimum_balance;
+    float service_charge;
 
 public:
-    CurrentAccount(string acc_num, double bal, double min_bal, double serv_charge)
-        : BankAccount(acc_num, bal) {
-        minimum_balance = min_bal;
-        service_charge = serv_charge;
+    CurrentAccount() : BankAccount() {
+        minimum_balance = 0.0;
+        service_charge = 0.0;
+    }
+
+    void inputCurrentDetails() {
+        inputAccountDetails();
+        cout << "Enter minimum balance: ";
+        cin >> minimum_balance;
+        cout << "Enter service charge: ";
+        cin >> service_charge;
     }
 
     void calculateServiceCharge() {
@@ -71,19 +90,37 @@ public:
 };
 
 int main() {
-    SavingsAccount s("S1001", 5000, 5);
+    SavingsAccount s;
+    cout << "Enter details for Savings Account:\n";
+    s.inputSavingsDetails();
+    cout<<endl;
     s.display();
-    s.deposit(1000);
-    s.withdraw(2000);
+    cout<<endl;
+    float dep, wd;
+    cout << "Enter amount to deposit: ";
+    cin >> dep;
+    s.deposit(dep);
+    cout<<endl;
+    cout << "Enter amount to withdraw: ";
+    cin >> wd;
+    s.withdraw(wd);
+    cout<<endl;
     s.calculateInterest();
+    cout<<endl;
     s.display();
 
-    cout << endl;
-
-    CurrentAccount c("C1001", 3000, 2000, 100);
+    cout << "\nEnter details for Current Account:\n";
+    CurrentAccount c;
+    c.inputCurrentDetails();
+    cout<<endl;
     c.display();
-    c.withdraw(1500);  
-    c.calculateServiceCharge(); 
+
+    cout << "Enter amount to withdraw: ";
+    cin >> wd;
+    c.withdraw(wd);
+
+    c.calculateServiceCharge();
+    cout<<endl;
     c.display();
 
 }
