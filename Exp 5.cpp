@@ -13,28 +13,28 @@ float area(float length, float width) {
     return length * width;
 }
 
-float area(float base, float height, int dummy) {
+float area(float base, float height, int) {
     return 0.5 * base * height;
 }
 
 int main() {
-    float r, l, w, b, h;
-    int s;
+    float radius, length, width, base, height;
+    int side;
 
     cout << "Enter radius of circle: ";
-    cin >> r;
-    cout << "Area of circle: " << area(r) << endl;
+    cin >> radius;
+    cout << "Area of circle: " << area(radius) << endl;
 
-    cout << "\nEnter side of square: ";
-    cin >> s;
-    cout << "Area of square: " << area(s) << endl;
+    cout << "Enter side of square: ";
+    cin >> side;
+    cout << "Area of square: " << area(side) << endl;
 
-    cout << "\nEnter length and width of rectangle: ";
-    cin >> l >> w;
-    cout << "Area of rectangle: " << area(l, w) << endl;
+    cout << "Enter length and width of rectangle: ";
+    cin >> length >> width;
+    cout << "Area of rectangle: " << area(length, width) << endl;
 
-    cout << "\nEnter base and height of triangle: ";
-    cin >> b >> h;
-    cout << "Area of triangle: " << area(b, h,0) << endl;
+    cout << "Enter base and height of triangle: ";
+    cin >> base >> height;
+    cout << "Area of triangle: " << area(base, height, 0) << endl;
 
 }
