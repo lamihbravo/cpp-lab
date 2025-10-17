@@ -1,46 +1,47 @@
 #include <iostream>
 using namespace std;
 
-class Counter {
-private:
-    int count;
+class Count {
+    int num;
 
 public:
-    Counter() {
-        count = 0;
+    Count(int n = 0) {
+        num = n;
     }
 
-    Counter(int c) {
-        count = c;
-    }
-    void display() {
-        cout << "Count: " << count << endl;
+    void show() {
+        cout << "Value: " << num << endl;
     }
 
-    Counter operator++() {
-        ++count;            
-        return *this;       
+    Count operator++() {
+        num++;
+        return *this;
     }
 
-    Counter operator++(int) {
-        Counter temp = *this;
-        count++;              
-        return temp;          
+    Count operator++(int) {
+        Count temp = *this;
+        num++;
+        return temp;
     }
 };
 
 int main() {
-    Counter c1(5); 
+    int m;
+    cout << "Enter starting number: ";
+    cin >> m;
 
-    cout << "Initial value: ";
-    c1.display();
+    Count c(m);
 
-    ++c1;
-    cout << "After prefix ++: ";
-    c1.display();
+    cout << "Initial value:\n";
+    c.show();
 
-    c1++;
-    cout << "After postfix ++: ";
-    c1.display();
+    ++c;
+    cout << "After prefix ++:\n";
+    c.show();
 
+    c++; 
+    cout << "After postfix ++:\n";
+    c.show();
+
+    return 0;
 }
