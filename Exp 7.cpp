@@ -1,58 +1,58 @@
 #include <iostream>
 using namespace std;
 
-class Time {
+class Clock {
 private:
-    int hours;
-    int minutes;
-    int seconds;
+    int hr, min, sec;
 
 public:
-    void inputTime() {
+    void readTime() {
         cout << "Enter hours: ";
-        cin >> hours;
+        cin >> hr;
         cout << "Enter minutes: ";
-        cin >> minutes;
+        cin >> min;
         cout << "Enter seconds: ";
-        cin >> seconds;
+        cin >> sec;
     }
 
-    void displayTime() {
-        cout << hours << ":" << minutes << ":" << seconds << endl;
+    void showTime() {
+        cout << hr << " : " << min << " : " << sec << endl;
     }
 
-    friend Time sumTime(Time t1, Time t2);
+    friend Clock addTime(Clock t1, Clock t2);
 };
 
-Time sumTime(Time t1, Time t2) {
-    Time t;
-    t.seconds = t1.seconds + t2.seconds;
-    t.minutes = t1.minutes + t2.minutes + t.seconds / 60;
-    t.seconds = t.seconds % 60;
-    t.hours = t1.hours + t2.hours + t.minutes / 60;
-    t.minutes = t.minutes % 60;
-    return t;
+Clock addTime(Clock t1, Clock t2) {
+    Clock total;
+    
+    total.sec = t1.sec + t2.sec;
+    total.min = t1.min + t2.min + (total.sec / 60);
+    total.sec = total.sec % 60;
+
+    total.hr = t1.hr + t2.hr + (total.min / 60);
+    total.min = total.min % 60;
+
+    return total;
 }
 
 int main() {
-    Time t1, t2, t3;
+    Clock time1, time2, result;
 
-    cout << "Enter first time:\n";
-    t1.inputTime();
+    cout << " Enter First Time "<<endl;
+    time1.readTime();
 
-    cout << "\nEnter second time:\n";
-    t2.inputTime();
+    cout << " Enter Second Time "<<endl;
+    time2.readTime();
 
-    t3 = sumTime(t1, t2);
+    result = addTime(time1, time2);
 
     cout << "\nFirst Time: ";
-    t1.displayTime();
+    time1.showTime();
 
     cout << "Second Time: ";
-    t2.displayTime();
+    time2.showTime();
 
-    cout << "Sum of Time: ";
-    t3.displayTime();
+    cout << "Total Time: ";
+    result.showTime();
 
-    return 0;
 }
